@@ -1,0 +1,7 @@
+@import '../../node_modules/bulma/css/bulma.min.css';
+
+#no-items {
+    padding: 2rem 0;
+    color: lightgrey;
+    font-style: italic;
+}

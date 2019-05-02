@@ -1,0 +1,19 @@
+{
+  "name": "bookmarker",
+  "version": "1.0.0",
+  "description": "Bookmarks Applications",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^5.0.0",
+    "electron-reload": "^1.4.0"
+  },
+  "dependencies": {
+    "bulma": "^0.7.4",
+    "jquery": "^3.4.1"
+  }
+}

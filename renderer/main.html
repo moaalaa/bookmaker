@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+   		<meta charset="UTF-8">
+		<title>bookmarker</title>
+		
+		<link rel="stylesheet" href="./css/font-awesome.min.css">
+		<link rel="stylesheet" href="./css/main.css">
+  	</head>
+  	<body>
+
+		<div class="panel">
+			
+			<div class="panel-heading">
+
+				<div class="field control is-grouped">
+					
+					<p class="control">
+						<a class="button is-primary">
+							<span class="icon is-small">
+								<i class="fa fa-plus"></i>
+							</span>
+						</a>
+					</p>
+				
+					<p class="control is-expanded has-icons-right">
+						<input class="input custom-input" id="search" type="text" placeholder="Search...">
+						<span class="icon is-small is-right">
+							<i class="fa fa-search"></i>
+						</span>
+					</p>
+
+				</div>
+
+			</div>
+
+			<div id="read-list" class="empty">
+				<p id="no-items" class="has-text-centered">No Items</p>
+			</div>
+		
+		
+		</div>
+
+  	</body>
+    <script>
+    	// Require Jquery
+      	window.$ = require('jquery');	
+
+      	// Main App Script
+      	require('./app.js')
+    </script>
+</html>
