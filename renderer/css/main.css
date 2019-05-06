@@ -5,3 +5,31 @@
     color: lightgrey;
     font-style: italic;
 }
+
+.custom-container {
+    padding: 0 0.5rem;
+}
+
+.panel {
+    padding-top: 52px;
+    margin-bottom: 0 !important;
+}
+
+.panel-heading {
+    position: fixed;
+    width: 100%;
+    margin-top: -52px;
+    z-index: 100;
+}
+
+.read-item {
+    border-left-width: 10px;
+}
+
+.panel-block.is-active {
+    border-left-color: #00d1b2;
+}
+
+.read-item.is-active {
+    background-color: #fafafa;
+}

@@ -16,7 +16,7 @@
 				<div class="field control is-grouped">
 					
 					<p class="control">
-						<a class="button is-primary">
+						<a class="button is-primary open-add-modal">
 							<span class="icon is-small">
 								<i class="fa fa-plus"></i>
 							</span>
@@ -38,15 +38,46 @@
 				<p id="no-items" class="has-text-centered">No Items</p>
 			</div>
 		
-		
 		</div>
 
+		<div id="add-modal" class="modal">
+		 	<div class="modal-background"></div>
+		 	<div class="modal-content custom-container">
+				
+				<div class="field">
+
+					<p class="control has-icons-right">
+						<input class="input is-medium" type="text" id="item-input" placeholder="Enter URL">
+						<span class="icon is-right">
+							<i class="fa fa-globe"></i>
+						</span>
+					</p>
+				</div>
+
+				<div class="field control is-grouped">
+					
+					<p class="control">
+						<a class="button is-primary" id="add-button">
+							<span class="icon is-small">
+								<i class="fa fa-plus"></i>
+							</span>
+							<span><strong>Add Item</strong></span>
+						</a>
+					</p>
+
+					<p class="control">
+						<a class="button close-add-modal">Cancel</a>
+					</p>
+				</div>			
+
+		 	</div>
+		</div>
   	</body>
     <script>
     	// Require Jquery
       	window.$ = require('jquery');	
 
       	// Main App Script
-      	require('./app.js')
+      	require('./js/app.js')
     </script>
 </html>
