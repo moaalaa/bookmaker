@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+     <style media="screen">
+        html, body, webview {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="loader" class="hero is-fullheight has-text-centered">
+        <div class="hero-body">
+            <div class="container">
+    
+                <div class="busy">
+                    <h1 class="title">
+                        <span class="icon is-large">
+                            <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+                        </span>
+                    </h1>
+                </div>
+    
+                <div class="failed is-hidden">
+                    <h1 class="title">Failed to Load</h1>
+                    <h2 class="subtitle">Please check your Network Connection</h2>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+        Put 'about:blank' Because We Need The Webview tag to initialize ,
+        When 'src' attribute Leaved Empty It Will Not be Initialized
+        So We Put 'about:blank' and it's a default browsers values
+    -->
+    <webview src="about:blank"></webview>
+
+</body>
+
+<script>
+
+    // Require Jquery
+    window.$ = require('jquery');
+    
+    // Require Query String
+    const queryString = require('query-string');
+    
+    // Parse Query String
+    const queryParams = queryString.parse(location.search);
+
+    // Get Query String 'url'
+    let url = decodeURIComponent(queryParams.url);
+
+    // Load Webview Content Once it's ready and not enter loop
+    $('webview').one('dom-ready', (e) => {
+        // Load Item Content Url into webview
+        e.currentTarget.loadURL(url)
+    })
+    .one('did-finish-load', () => {
+        // Hide Loader to reveal webview
+        $('#loader').fadeOut(1000); 
+    })
+    .on('did-fail-load', () => {
+        $('#loader .busy').addClass('is-hidden')
+        
+        // Maybe it's hidden from 'did finish load' event
+        $('#loader').fadeIn(100); 
+
+        $('#loader .failed').removeClass('is-hidden')
+    });
+
+</script>
+</html>

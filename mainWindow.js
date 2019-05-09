@@ -15,6 +15,7 @@ module.exports.createWindow = () => {
         minHeight: 310,
         webPreferences: {
             nodeIntegration: true,
+            webviewTag: true,
         }
     });
 

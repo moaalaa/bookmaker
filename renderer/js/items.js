@@ -37,13 +37,15 @@ module.exports.openItem = () => {
     // Get selected item
     let targetItem = $('.read-item.is-active');
 
-    // Get item's content url
-    let contentURL = targetItem.data('url');
+    // Get item's content url (encoded)
+    let contentURL = encodeURIComponent(targetItem.data('url'));
 
-    console.log('Opening Item');
-    console.log(contentURL);
+    // Reader Window URL
+    let readerWinURL = `file://${__dirname}/../reader.html?url=${contentURL}`;
+    console.log(readerWinURL);
     
-
+    // Open item in new proxy BrowserWindow
+    let readerWin = window.open(readerWinURL, targetItem.data('title'));
 };
 
 // Add New Item
@@ -54,7 +56,7 @@ module.exports.addItem = (item) => {
 
     // New item html
     let itemHtml = `
-        <a href="#" class="panel-block read-item" data-url="${item.url}">
+        <a href="#" class="panel-block read-item" data-title="${item.title}" data-url="${item.url}">
             <figure class="image has-shadow is-64x64 thumb">
                 <img src="${item.screenshot}" >
             </figure>
