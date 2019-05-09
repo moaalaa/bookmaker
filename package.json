@@ -1,14 +1,16 @@
 {
-  "name": "bookmarker",
+  "name": "Bookmarker",
   "version": "1.0.0",
-  "description": "Bookmarks Applications",
+  "description": "Bookmarks Websites And Keep Them Safe",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package": "electron-packager . --overwrite --asar --icon=icon --out out/"
   },
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Mohamed Alaa El-Din Mohamed",
+  "homepage": "https://github.com/moaalaa/bookmaker#readme",
   "devDependencies": {
+    "asar": "^2.0.1",
     "electron": "^5.0.0",
     "electron-packager": "^13.1.1",
     "electron-reload": "^1.4.0"

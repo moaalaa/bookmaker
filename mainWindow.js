@@ -13,6 +13,7 @@ module.exports.createWindow = () => {
         minWidth: 350,
         maxWidth: 650,
         minHeight: 310,
+        icon: `${__dirname}/icons/64x64.png`,
         webPreferences: {
             nodeIntegration: true,
             webviewTag: true,
@@ -20,7 +21,7 @@ module.exports.createWindow = () => {
     });
 
     // DevTools
-    this.win.webContents.openDevTools();
+    // this.win.webContents.openDevTools();
 
     // Load Main Window Content
     this.win.loadFile('./renderer/main.html');

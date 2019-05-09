@@ -4,7 +4,7 @@ const mainWindow = require('./mainWindow');
 const readItem = require('./readItem');
 
 
-require('electron-reload')(__dirname);
+// require('electron-reload')(__dirname);
 
 
 // Listen For New Item
