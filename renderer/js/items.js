@@ -31,7 +31,11 @@ module.exports.changeItem = (direction) => {
 
 // Window Function For using eval to access the parent window see 'reader.html'
 // Delete Item By index
-window.deleteItem = (i) => {
+window.deleteItem = (i = false) => {
+    
+    // Set i to active item if not passed as argument
+    if (i === false) i = ($('.read-item.is-active').index() - 1);
+
     // Remove Item From DOM
     $('.read-item').eq(i).remove();
 
@@ -58,7 +62,7 @@ window.deleteItem = (i) => {
 };
 
 // Open item for reading
-module.exports.openItem = () => {
+window.openItem = () => {
     // only if items have been added
     if (! this.toReadItems.length) return;
 
@@ -70,14 +74,24 @@ module.exports.openItem = () => {
 
     // Get Item Index to pass  to proxy window
     let itemIndex = (targetItem.index() - 1);
-    console.log(itemIndex);
     
-
     // Reader Window URL
     let readerWinURL = `file://${__dirname}/../reader.html?url=${contentURL}&itemIndex=${itemIndex}`;
     
     // Open item in new proxy BrowserWindow
     let readerWin = window.open(readerWinURL, targetItem.data('title'));
+};
+
+// Open Item In Default Browser
+window.openInBrowser = () => {
+    // only if items have been added
+    if (!this.toReadItems.length) return;
+
+    // Get selected item
+    let targetItem = $('.read-item.is-active');
+
+    // Open In Default Browser
+    require('electron').shell.openExternalSync(targetItem.data('url'));
 };
 
 // Add New Item
@@ -103,6 +117,6 @@ module.exports.addItem = (item) => {
     $('.read-item')
         .off('click, dblclick')
         .on('click', this.selectItem)
-        .on('dblclick', this.openItem);
+        .on('dblclick', window.openItem);
 };
 

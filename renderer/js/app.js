@@ -1,6 +1,7 @@
 // Modules
 const {ipcRenderer} = require('electron'); 
 const items = require('./items');
+const menu = require('./menu');
 
 // Navigate selected items with uop/down keys
 $(document).on('keydown', (e) => {
