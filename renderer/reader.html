@@ -37,6 +37,18 @@
         </div>
     </section>
 
+    <a id="mark-read" class="is-hidden">
+        <div class="block">
+            <span class="tag is-large is-primary">
+                <span class="icon">
+                    <i class="fa fa-check fa-inverse"></i>
+                </span>
+                &nbsp;
+                Read
+            </span>
+        </div>
+    </a>
+
     <!-- 
         Put 'about:blank' Because We Need The Webview tag to initialize ,
         When 'src' attribute Leaved Empty It Will Not be Initialized
@@ -57,6 +69,9 @@
     // Parse Query String
     const queryParams = queryString.parse(location.search);
 
+    // Get Item Index
+    let itemIndex = queryParams.itemIndex;
+
     // Get Query String 'url'
     let url = decodeURIComponent(queryParams.url);
 
@@ -68,14 +83,28 @@
     .one('did-finish-load', () => {
         // Hide Loader to reveal webview
         $('#loader').fadeOut(1000); 
+        
+        // Show Mark
+        $('#mark-read').removeClass('is-hidden')
     })
     .on('did-fail-load', () => {
+        $('#mark-read').addClass('is-hidden')
+
         $('#loader .busy').addClass('is-hidden')
         
         // Maybe it's hidden from 'did finish load' event
         $('#loader').fadeIn(100); 
 
         $('#loader .failed').removeClass('is-hidden')
+    });
+
+    // handle mark-read click (delete)
+    $('#mark-read').on('click', () => {
+        // Parent Window Because this window is a BrowserWindow Proxy And Separated
+        // Save To Use 'eval' Here Because Electron use Chromium And We Have Full Control On Every Window 
+        // The danger Is When using 'eval' on Actual window
+        window.opener.eval(`deleteItem(${itemIndex})`)
+        window.close();
     });
 
 </script>

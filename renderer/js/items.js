@@ -29,6 +29,34 @@ module.exports.changeItem = (direction) => {
     }
 };
 
+// Window Function For using eval to access the parent window see 'reader.html'
+// Delete Item By index
+window.deleteItem = (i) => {
+    // Remove Item From DOM
+    $('.read-item').eq(i).remove();
+
+    //Remove from 'toReadItems' array
+
+    this.toReadItems = this.toReadItems.filter((item, index) => index !== i);
+
+    // Update Storage
+    this.saveItems();
+
+    // Select Prev Item Or next Item
+
+    if (this.toReadItems.length) {
+        // If First itemWas Deleted, Select New First Item, Else Select Previous Item
+        let newIndex = (i === 0) ? 0 : (i - 1)
+
+        // Assign Active Class to new index
+        $('.read-item').eq(newIndex).addClass('is-active');
+    } else {
+        // Show 'no items' message
+        $('#no-items').show();
+    }
+    
+};
+
 // Open item for reading
 module.exports.openItem = () => {
     // only if items have been added
@@ -40,9 +68,13 @@ module.exports.openItem = () => {
     // Get item's content url (encoded)
     let contentURL = encodeURIComponent(targetItem.data('url'));
 
+    // Get Item Index to pass  to proxy window
+    let itemIndex = (targetItem.index() - 1);
+    console.log(itemIndex);
+    
+
     // Reader Window URL
-    let readerWinURL = `file://${__dirname}/../reader.html?url=${contentURL}`;
-    console.log(readerWinURL);
+    let readerWinURL = `file://${__dirname}/../reader.html?url=${contentURL}&itemIndex=${itemIndex}`;
     
     // Open item in new proxy BrowserWindow
     let readerWin = window.open(readerWinURL, targetItem.data('title'));
