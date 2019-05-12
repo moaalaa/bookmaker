@@ -5,18 +5,49 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "package": "electron-packager . --overwrite --asar --icon=icon --out out/"
+    "package": "electron-packager . --overwrite --asar --icon=icon --out out/",
+    "build:mac": "electron-builder -m",
+    "build:win": "electron-builder -w",
+    "build:all": "electron-builder -mwl",
+    "build": "electron-builder -wl",
+    "create-cert": "electron-builder create-self-signed-cert -p 'mix-code'"
+  },
+
+  "build": {
+    "appId":"com.mix-code.bookmarker",
+    "productName": "Bookmarker Application",
+    "copyright": "Copyright © 2019 ${author}",
+    "directories": {
+      "buildResources": "."
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis",
+      "certificateFile": "private/mix-code.pfx",
+      "verifyUpdateCodeSignature": false,
+      "publisherName": "mix-code"
+    },
+    "linux": {
+      "target": "zip",
+      "category": "Network"
+    }
   },
   "author": "Mohamed Alaa El-Din Mohamed",
   "homepage": "https://github.com/moaalaa/bookmaker#readme",
   "devDependencies": {
     "asar": "^2.0.1",
     "electron": "^5.0.0",
+    "electron-builder": "^20.39.0",
+    "electron-builder-squirrel-windows": "^20.41.0",
     "electron-packager": "^13.1.1",
     "electron-reload": "^1.4.0"
   },
   "dependencies": {
     "bulma": "^0.7.4",
+    "electron-log": "^3.0.5",
     "jquery": "^3.4.1",
     "query-string": "^6.5.0"
   }
