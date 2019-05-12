@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Downloading Bookmarker Update</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <progress class="progress is-primary" style="width: 100%" value="0" max="100"></progress>
+</body>
+<script>
+    // Require IPC
+    const {ipcRenderer} = require('electron'); 
+
+    // Require Jquery
+    window.$ = require('jquery');
+
+    // Request progress every second
+    setInterval(() => {
+
+        // Request a sync  response via IPC
+        let progress = ipcRenderer.sendSync('download-progress-request');
+
+        // Update progress element
+        $('progress').val(progress);
+
+    }, 1000)
+
+</script>
+
+</html>

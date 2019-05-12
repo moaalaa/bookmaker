@@ -52,7 +52,11 @@ const template = [
             {
                 label: 'Learn More',
                 click () { shell.openExternalSync('https://github.com/moaalaa/bookmaker') }
-            }
+            },
+            {
+                label: `Version ${remote.app.getVersion()}`,
+                click () { shell.openExternalSync('https://github.com/moaalaa/bookmaker') }
+            },
         ]
     }
 ];
